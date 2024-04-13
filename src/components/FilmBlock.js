@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import testImg from "../../assets/img/test.jpg";
 
 const FilmBlock = ({Title, Poster, imdbID, Type, Year}) => {
-  // const dispath = useDispatch();
-
   return (
     <Link to={`/film/${imdbID}`}>
       <div className="film-block">

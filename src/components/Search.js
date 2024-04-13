@@ -1,8 +1,7 @@
 import React, { useRef, useState, useCallback } from "react";
-import styles from "./Search.module.scss";
-import {useDebounce} from '../../hooks/debounce';
+import {useDebounce} from '../hooks/debounce';
 import { useDispatch } from "react-redux";
-import { setSearch } from "../../store/filterFilmSlice/filterFilmSlice";
+import { setSearch } from "../store/filterFilmSlice/filterFilmSlice";
 
 const Search = () => {
   const [value, setValue] = useState('batman')
@@ -25,9 +24,9 @@ const Search = () => {
   };
 
   return (
-    <div className={styles.root}>
+    <div className='search'>
       <svg
-        className={styles.icon}
+        className='search-icon'
         enableBackground="new 0 0 32 32"
         id="EditableLine"
         version="1.1"
@@ -64,13 +63,13 @@ const Search = () => {
         ref={inputRef}
         value={value}
         onChange={onChangeInput}
-        className={styles.input}
+        className='search-input'
         placeholder="Поиск фильма..."
       />
       {value && (
         <svg
           onClick={onClickClear}
-          className={styles.clearIcon}
+          className='search-clearIcon'
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >

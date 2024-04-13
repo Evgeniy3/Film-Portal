@@ -8,12 +8,13 @@ export const filmApi = createApi({
     refetchOnFocus: true,
     endpoints: build => ({
       searchFilms: build.query({
-        query: (search) => ({
-          url: `?apikey=7fd6cd39`,
-          params: {
-            s: search,
+        query: (args) => {
+          const { searchValue, pageValue, sortType} = args;
+          
+          return {
+            url: `?apikey=7fd6cd39&s=${searchValue}&page=${pageValue}&type=${sortType.value}`,
           }
-        }),
+        },
       }),
       searchOneFilm: build.query({
         query: (search) => ({

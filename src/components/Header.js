@@ -29,8 +29,8 @@ const Header = () => {
           </div>
         </Link>
         <Search />
-        <div className="header__cart">
-            <Link to="/cart" className="button button--cart">
+        <div className="header__registration">
+            <Link to="/registration" className="button button--registration">
               <span>Войти</span>
               <div className="button__delimiter"></div>
               <span>Регистрация</span>

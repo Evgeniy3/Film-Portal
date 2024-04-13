@@ -1,24 +1,35 @@
-import React, { useRef } from "react";
+import React from "react";
  import FilmBlock from "../components/FilmBlock";
-import { Skeleton } from "../components/FilmBlock/Skeleton";
 import { useSearchFilmsQuery } from "../store/filmSlice/film.api";
 import { useSelector } from "react-redux";
+import Loader from "../components/Loader";
+import Pagination from "../components/Pagination";
+import SortType from "../components/SortType";
 
 const Home = () => {
-  const {searchValue} = useSelector(state => state.filter)
-  const {isLoading, isError, data} = useSearchFilmsQuery(searchValue);
-  const films = data?.Search?.map((obj) => <FilmBlock key={obj.imdbID} {...obj}/>);
-  const skeletons = [...new Array(12)].map((_, i) => <Skeleton key={i}/>);
+  const {searchValue, pageValue, sortType} = useSelector(state => state.filter)
+  const {isError, data} = useSearchFilmsQuery({searchValue, pageValue, sortType});
   console.log(data)
+  const films = data?.Search?.map((obj) => <FilmBlock key={obj.imdbID} {...obj}/>);
+ 
+  if(!data) {
+    return <Loader />
+  }
   return (
     <div className="container">
       <div className="content__top">
-        
+        <SortType value={sortType}/>
       </div>
       <h2 className="content__title">Все фильмы</h2>
-      <div className="content__items">
-        {films}
-      </div>
+      {isError ? (
+        <div className="content__error-info">
+          <h2>Произошла ошибка 😕</h2>
+          <p>К сожалению, не удалось получить фильмы. Попробуйте повторить попытку позже.</p>
+        </div>
+      ) : (
+        <div className={data.Response === 'True' ? "content__items" : 'content__epmty'}>{data.Response === 'True' ? films : <p>{sortType.name} не найден!</p>}</div>
+      )}
+      {data.Response === 'True' ? <Pagination totalResult={data.totalResults}/> : <div></div>}
     </div>
   );
 }

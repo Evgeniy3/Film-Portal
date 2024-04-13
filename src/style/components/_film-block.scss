@@ -45,6 +45,14 @@
       width: 270px;
     }
   }
+  &-btns {
+    display: flex;
+    margin-top: 20px;
+    button{
+      margin-right: 20px;
+    }
+  }
+  
   div{
     width: 600px;
   }
