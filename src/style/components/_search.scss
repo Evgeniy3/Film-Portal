@@ -1,10 +1,10 @@
 .search {
     position: relative;
-    left: -120px;
+    left: -35px;
     @media (max-width: 1340px) {
       left: 0;
     }
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
       margin-bottom: 10px;
     }
     &-input {
@@ -17,7 +17,7 @@
         @media (max-width: 1340px) {
           width: 300px;
         }
-        @media (max-width: 900px) {
+        @media (max-width: 950px) {
           width: 100%;
         }
         &:focus {

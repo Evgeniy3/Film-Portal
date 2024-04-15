@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setSearch } from "../store/filterFilmSlice/filterFilmSlice";
 
 const Search = () => {
-  const [value, setValue] = useState('batman')
+  const [value, setValue] = useState('deadpool')
   const inputRef = useRef(null);
   const debounced = useDebounce(value);
   const dispatch = useDispatch()

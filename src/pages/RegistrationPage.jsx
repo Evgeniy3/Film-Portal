@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {}, []);
-
+  const LS_FAV_KEY = 'regtk'
+  const isAuth = JSON.parse(localStorage.getItem(LS_FAV_KEY))
+  console.log(isAuth)
   const RegisterSchema = yup
     .object()
     .shape({
@@ -17,6 +17,7 @@ const LoginPage = () => {
         .string()
         .required("Укажите пароль")
         .min(5, "Минимум 5 символов!"),
+      confirmPassword: yup.string().oneOf([yup.ref('password'), null], ('Пароли должны совпадать')),  
     })
     .required();
 
@@ -30,6 +31,11 @@ const LoginPage = () => {
   });
 
   const onSubmit = ({ name, password }) => {
+    if(isAuth) {
+      alert('Вы уже зарегистрированы!')
+    }
+    localStorage.setItem(LS_FAV_KEY, JSON.stringify({name, password}))
+    navigate('/')
     try {
     } catch (error) {
       console.log(error);
@@ -38,7 +44,7 @@ const LoginPage = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
-      <h3 className="form-title">Вход</h3>
+      <h3 className="form-title">Регистрация</h3>
       <label className="form-lb">
         <input
           className="form-input"
@@ -57,12 +63,21 @@ const LoginPage = () => {
         />
         <p className="form-error">{errors.password?.message}</p>
       </label>
+      <label className="form-lb">
+        <input
+          className="form-input"
+          type="password"
+          placeholder="Повторите пароль"
+          {...register("confirmPassword", { required: "Укажите пароль" })}
+        />
+        <p className="form-error">{errors.confirmPassword?.message}</p>
+      </label>
       <button type="submit" disabled={!isValid} className="form-btn">
-        Войти
+        Зарегистрироваться
       </button>
-      <Link to="/registration">Нет аккаунта?</Link>
+      <Link to="/login">Уже зарегистрированы?</Link>
     </form>
   );
-}
+};
 
-export default LoginPage
+export default RegistrationPage;

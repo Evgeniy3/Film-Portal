@@ -9,10 +9,10 @@ export const filmApi = createApi({
     endpoints: build => ({
       searchFilms: build.query({
         query: (args) => {
-          const { searchValue, pageValue, sortType} = args;
+          const { searchValue, pageValue, sortType, sortYear} = args;
           
           return {
-            url: `?apikey=7fd6cd39&s=${searchValue}&page=${pageValue}&type=${sortType.value}`,
+            url: `?apikey=7fd6cd39&s=${searchValue}&page=${pageValue}&type=${sortType.value}&y=${sortYear.value}`,
           }
         },
       }),

@@ -2,21 +2,23 @@
 
 .header {
   border-bottom: 1px solid $gray-line;
-  padding: 40px 0;
+  padding: 40px 30px 40px 0;
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @media (max-width: 900px) {
+    @media (max-width: 950px) {
       display: block;
     }
   }
 
   &__registration {
-    @media (max-width: 900px) {
+    display: flex;
+    @media (max-width: 950px) {
       display: flex;
       justify-content: center;
+      margin-bottom: 10px;
     }
   }
 
@@ -46,6 +48,16 @@
       @media (max-width: 960px) {
         font-size: 12px;
       }
+    }
+  }
+  &__avatar{
+    display: block;
+    p {
+      font-size: 16px;
+    }
+    &-img{
+      margin-left: 30%;
+      width: 18px;
     }
   }
 }

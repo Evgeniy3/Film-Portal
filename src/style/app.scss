@@ -21,7 +21,7 @@ body {
 }
 
 .content {
-  padding: 40px 0;
+  padding: 40px 10px;
   
   &__error-info {
     margin: 100px auto;
@@ -78,7 +78,6 @@ body {
   &__top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 
     @media (max-width: 1260px) {
       .categories {
@@ -91,11 +90,7 @@ body {
       }
 
       .sort {
-        padding-left: 20px;
-
-        b {
-          display: none;
-        }
+        padding-left: 10px;
       }
     }
 
@@ -113,8 +108,6 @@ body {
       .categories {
         margin-top: 30px;
       }
-
-      flex-direction: column-reverse;
     }
   }
 }

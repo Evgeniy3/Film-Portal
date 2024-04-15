@@ -8,6 +8,7 @@
   min-width: 100px;
   text-align: center;
   cursor: pointer;
+  margin-right: 15px;
   transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
   border: 1px solid transparent;
   @include noselect();
@@ -38,6 +39,7 @@
       display: flex;
       justify-content: center;
     }
+
   }
 
   &--circle {
@@ -152,7 +154,6 @@
     @media (max-width: 900px) {
       justify-content: center;
     }
-
     svg {
       margin-right: 8px;
       margin-bottom: 1px;
@@ -161,6 +162,11 @@
     span {
       font-weight: 600;
       font-size: 16px;
+    }
+  }
+  @media (max-width: 400px) {
+    >span{
+      font-size: 12px; 
     }
   }
 }

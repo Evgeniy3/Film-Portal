@@ -2,6 +2,7 @@
 
 .sort {
   position: relative;
+  margin-right: 40px;
   &__label {
     display: flex;
     align-items: center;
@@ -36,6 +37,12 @@
 
     ul {
       overflow: hidden;
+      max-height: 200px;
+      &.scroll{
+        overflow-y:scroll;
+        scrollbar-width: thin;
+      }
+      
       li {
         padding: 12px 20px;
         cursor: pointer;
@@ -43,6 +50,7 @@
         &.active,
         &:hover {
           background: rgba(254, 95, 30, 0.05);
+
         }
 
         &.active {

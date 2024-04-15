@@ -1,11 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSortType } from "../store/filterFilmSlice/filterFilmSlice";
 
 export const sortList = [
-  { name: "Фильм", value: "movie"},
-  { name: "Сериал", value: "series"},
-  { name: "Эпизод", value: "episode"},
+  { name: "Все", value: "" },
+  { name: "Фильм", value: "movie" },
+  { name: "Сериал", value: "series" },
+  { name: "Эпизод", value: "episode" },
 ];
 
 const SortType = ({ value }) => {
@@ -21,9 +22,7 @@ const SortType = ({ value }) => {
     <div className="sort">
       <div className="sort__label">
         <svg
-          className={
-            open ?  "active" : ""
-          }
+          className={open ? "active" : ""}
           width="10"
           height="6"
           viewBox="0 0 10 6"
@@ -42,9 +41,11 @@ const SortType = ({ value }) => {
         <div className="sort__popup">
           <ul>
             {sortList.map((obj, i) => (
-              <li key={i} className={
-                value.name === obj.name ? "active" : ""
-              } onClick={() => onClickSort(obj)}>
+              <li
+                key={i}
+                className={value.name === obj.name ? "active" : ""}
+                onClick={() => onClickSort(obj)}
+              >
                 {obj.name}
               </li>
             ))}

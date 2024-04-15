@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const RegistrationPage = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  const LS_FAV_KEY = 'regtk'
+  const isAuth = JSON.parse(localStorage.getItem(LS_FAV_KEY))
 
   const RegisterSchema = yup
     .object()
@@ -17,7 +18,6 @@ const RegistrationPage = () => {
         .string()
         .required("Укажите пароль")
         .min(5, "Минимум 5 символов!"),
-      confirmPassword: yup.string().oneOf([yup.ref('password'), null], ('Пароли должны совпадать')),  
     })
     .required();
 
@@ -32,6 +32,12 @@ const RegistrationPage = () => {
 
   const onSubmit = ({ name, password }) => {
     try {
+      if(!isAuth) {
+        alert('Вы не зарегистрированы!')
+      }
+      else if(isAuth.name === name && isAuth.password === password) {
+        navigate('/')
+      }
     } catch (error) {
       console.log(error);
     }
@@ -39,7 +45,7 @@ const RegistrationPage = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="form">
-      <h3 className="form-title">Регистрация</h3>
+      <h3 className="form-title">Вход</h3>
       <label className="form-lb">
         <input
           className="form-input"
@@ -58,21 +64,12 @@ const RegistrationPage = () => {
         />
         <p className="form-error">{errors.password?.message}</p>
       </label>
-      <label className="form-lb">
-        <input
-          className="form-input"
-          type="password"
-          placeholder="Повторите пароль"
-          {...register("confirmPassword", { required: "Укажите пароль" })}
-        />
-        <p className="form-error">{errors.confirmPassword?.message}</p>
-      </label>
       <button type="submit" disabled={!isValid} className="form-btn">
-        Зарегистрироваться
+        Войти
       </button>
-      <Link to="/login">Уже зарегистрированы?</Link>
+      <Link to="/registration">Нет аккаунта?</Link>
     </form>
   );
-};
+}
 
-export default RegistrationPage;
+export default LoginPage

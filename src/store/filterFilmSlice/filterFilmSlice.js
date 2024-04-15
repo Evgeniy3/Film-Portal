@@ -3,7 +3,8 @@ import { createSlice} from '@reduxjs/toolkit'
 const initialState = {
   searchValue: '',
   pageValue: 1,
-  sortType: { name: "Фильм", value: "movie"},
+  sortType: { name: "Все", value: ""},
+  sortYear: {name: 'Выбрать', value: ''},
 }
 
 const filterSlice = createSlice({
@@ -19,9 +20,12 @@ const filterSlice = createSlice({
     setSortType: (state, action) => {
       state.sortType = action.payload;
     },
+    setSortYear: (state, action) => {
+      state.sortYear = action.payload;
+    },
   },
 });
 
-export const { setSearch, setNumPage, setSortType } = filterSlice.actions;
+export const { setSearch, setNumPage, setSortType, setSortYear} = filterSlice.actions;
 
 export default filterSlice.reducer;
