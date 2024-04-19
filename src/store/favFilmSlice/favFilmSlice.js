@@ -1,9 +1,9 @@
 import { createSlice} from '@reduxjs/toolkit';
 
-const LS_FAV_KEY = 'rfk'
-
 const initialState = {
-    favFilms: JSON.parse(localStorage.getItem(LS_FAV_KEY) ?? '[]'),
+    favFilms: JSON.parse(localStorage.getItem('favfilms') ?? '[]'),
+    pageValue: 1,
+    
 }
 
 const favFilmSlice = createSlice({
@@ -12,15 +12,18 @@ const favFilmSlice = createSlice({
   reducers: {
     addFavFilm: (state, action) => {
         state.favFilms.push(action.payload)
-        localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.favFilms))
+        localStorage.setItem('favfilms', JSON.stringify(state.favFilms))
     },
-    removeFavFilm(state, action) {
+    removeFavFilm: (state, action) => {
         state.favFilms = state.favFilms.filter((obj) => obj.imdbID !== action.payload)
-        localStorage.setItem(LS_FAV_KEY, JSON.stringify(state.favFilms))
-    }
+        localStorage.setItem('favfilms', JSON.stringify(state.favFilms))
+    },
+    setCurrentPage: (state, action) => {
+      state.pageValue = action.payload;
+    },
   },
 });
 
-export const { addFavFilm, removeFavFilm } = favFilmSlice.actions;
+export const { addFavFilm, removeFavFilm, setCurrentPage } = favFilmSlice.actions;
 
 export default favFilmSlice.reducer;

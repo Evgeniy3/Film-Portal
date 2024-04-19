@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,8 +7,6 @@ import * as yup from "yup";
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const LS_FAV_KEY = 'regtk'
-  const isAuth = JSON.parse(localStorage.getItem(LS_FAV_KEY))
 
   const RegisterSchema = yup
     .object()
@@ -31,16 +29,15 @@ const LoginPage = () => {
   });
 
   const onSubmit = ({ name, password }) => {
-    try {
+      const isAuth = JSON.parse(window.localStorage.getItem('admin'))
       if(!isAuth) {
         alert('Вы не зарегистрированы!')
       }
       else if(isAuth.name === name && isAuth.password === password) {
         navigate('/')
-      }
-    } catch (error) {
-      console.log(error);
-    }
+      } else {
+        alert('Неверный логин или пароль!')
+      } 
   };
 
   return (

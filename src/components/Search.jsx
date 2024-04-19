@@ -9,6 +9,10 @@ const Search = () => {
   const debounced = useDebounce(value);
   const dispatch = useDispatch()
 
+  if(value === '123') {
+    throw new Error('BOOOOOOOOM!')
+  }
+
   const onClickClear = () => {
     dispatch(setSearch(''))
     setValue('');

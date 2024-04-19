@@ -3,13 +3,13 @@
 @import './components/all';
 
 body {
-  background-color: $background;
+  background-color: var(#{--body-background-default});
 }
 
 .wrapper {
   width: calc(100vw - 100px);
   height: 100%;
-  background-color: #fff;
+  background-color: var(#{--wrapper-background-default});
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
@@ -24,6 +24,7 @@ body {
   padding: 40px 10px;
   
   &__error-info {
+    padding: 100px 0;
     margin: 100px auto;
     width: 500px;
     text-align: center;
@@ -31,11 +32,12 @@ body {
     h2 {
       font-size: 32px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
     p {
       font-size: 20px;
+      margin-bottom: 20px;
     }
   }
 
@@ -60,7 +62,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    grid-column-gap: 11px;
+    grid-column-gap: 40px;
 
     @media (max-width: 1400px) {
       grid-template-columns: repeat(3, 1fr);

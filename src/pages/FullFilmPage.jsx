@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSearchOneFilmQuery } from "../store/filmSlice/film.api";
 import Loader from "../components/Loader";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFavFilm, removeFavFilm } from "../store/favFilmSlice/favFilmSlice";
 
 const FullFilm = () => {
@@ -13,11 +12,10 @@ const FullFilm = () => {
   const { data, isError } = useSearchOneFilmQuery(id);
   const { favFilms } = useSelector((state) => state.favFilm);
   const [isFav, setIsFav] = useState(
-    favFilms.some((obj) => obj?.imdbID.includes(data?.imdbID))
+    favFilms.some((obj) => obj?.imdbID === data?.imdbID)
   );
 
-  const LS_FAV_KEY = 'regtk'
-  const isAuth = JSON.parse(localStorage.getItem(LS_FAV_KEY))
+  const isAuth = JSON.parse(localStorage.getItem('admin'))
 
   const addFilmBtn = () => {
       dispatch(addFavFilm(data));

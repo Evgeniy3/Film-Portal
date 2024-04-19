@@ -6,3 +6,50 @@ $orange: #fe5f1e;
 $container-width: 90%;
 
 $duration: 0.15s;
+
+$light-color: #000000;
+$dark-color: #FFFFFF;
+$base-color: #FFFFFF;
+
+$body-background-dark: #3f2d00;
+$body-background-light:  #ffdf8c;
+
+$wrapper-background-dark: #272727;
+$wrapper-background-light: #fff;
+
+$svg-background-dark: #fff;
+$svg-background-light: #000000;
+
+:root {
+    //body-background
+    --body-background-dark: #{$body-background-dark};
+    --body-background-light: #{$body-background-light};
+    --body-background-default: var(#{--body-background-light});
+
+    //wrapper-background
+    --wrapper-background-dark: #{$wrapper-background-dark};
+    --wrapper-background-light: #{$wrapper-background-light};
+    --wrapper-background-default: var(#{--wrapper-background-light});
+
+     //svg-background
+     --svg-background-dark: #{$svg-background-dark};
+     --svg-background-light: #{$svg-background-light};
+     --svg-background-default: var(#{--svg-background-light});
+  
+  
+    // //components-border
+    // --components-border-dark: #{$components-border-dark};
+    // --components-border-light: #{$components-border-light};
+    // --components-border-default: #{$components-border-dark};
+  
+    // //components-hover
+    // --components-hover-dark: #{$components-hover-dark};
+    // --components-hover-light: #{$components-hover-light};
+    // --components-hover-default: #{$components-hover-dark};
+  
+    //text
+    --text-color-dark: #{$dark-color};
+    --text-color-light: #{$light-color};
+    --text-color-default: var(#{--text-color-dark});
+  
+  }

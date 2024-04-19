@@ -6,9 +6,7 @@ import * as yup from "yup";
 
 const RegistrationPage = () => {
   const navigate = useNavigate();
-  const LS_FAV_KEY = 'regtk'
-  const isAuth = JSON.parse(localStorage.getItem(LS_FAV_KEY))
-  console.log(isAuth)
+
   const RegisterSchema = yup
     .object()
     .shape({
@@ -31,15 +29,13 @@ const RegistrationPage = () => {
   });
 
   const onSubmit = ({ name, password }) => {
-    if(isAuth) {
+    const isAuth = JSON.parse(window.localStorage.getItem('admin'))
+    if(isAuth?.name === name) {
       alert('Вы уже зарегистрированы!')
     }
-    localStorage.setItem(LS_FAV_KEY, JSON.stringify({name, password}))
+    window.localStorage.setItem(password, JSON.stringify({name, password}))
     navigate('/')
-    try {
-    } catch (error) {
-      console.log(error);
-    }
+    
   };
 
   return (

@@ -3,6 +3,7 @@ import {setupListeners} from '@reduxjs/toolkit/query'
 import { filmApi } from './filmSlice/film.api'
 import filterReducer from './filterFilmSlice/filterFilmSlice'
 import favFilmSlice from './favFilmSlice/favFilmSlice'
+import logger from '../middleware'
 
 export const store = configureStore({
     reducer: {
@@ -10,7 +11,7 @@ export const store = configureStore({
         filter: filterReducer,
         favFilm: favFilmSlice,
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(filmApi.middleware)
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([filmApi.middleware, logger])
 })
 
 setupListeners(store.dispatch)
