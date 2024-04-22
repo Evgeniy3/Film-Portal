@@ -1,0 +1,133 @@
+@import '../variables';
+
+.film-block {
+  width: 280px;
+  text-align: center;
+  margin-bottom: 65px;
+  box-shadow: 0 0 15 grey;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  @media (max-width: 330px) {
+    width: 270px;
+  }
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &__image {
+    width: 260px;
+    height: 370px;
+  }
+
+  &__imgempty {
+    width: 260px;
+    height: 370px;
+    p {
+      padding-top: 44%;
+    }
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1%;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  p{
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1%;
+    margin-bottom: 5px;
+  }
+}
+
+.fullfilm {
+  display: flex;
+  justify-content: space-between;
+  &-img {
+    width: 500px;
+    margin-right: 20px;
+  }
+  &-img__imgempty {
+    width: 40%;
+    margin: auto 0;
+    text-align: center;
+  }
+  &-btns {
+    display: flex;
+    margin-top: 20px;
+    button{
+      margin-right: 20px;
+    }
+  }
+  
+  div{
+    max-width: 550px;
+  }
+  p{
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1%;
+    margin-bottom: 10px;
+    span{
+      font-size: 19px;
+      font-weight: 400;
+    }
+  }
+  @media (max-width: 1360px) {
+    &-img {
+      width: 400px;
+    }
+    p{
+      font-size: 16px;
+      margin-bottom: 7px;
+      span{
+        font-size: 15px;
+      }
+    }
+  }
+  @media (max-width: 950px) {
+    display: block;
+    &-img {
+      width: 400px;
+      margin-bottom: 20px;
+    }
+    &-btns {
+      button{
+        margin-right: 10px;
+      }
+    }
+    p{
+      font-size: 16px;
+      margin-bottom: 7px;
+      span{
+        font-size: 15px;
+      }
+    }
+  }
+  @media (max-width: 490px) {
+    &-img {
+      width: 260px;
+      margin-bottom: 10px;
+    }
+    &-btns {
+      display: block;
+      button{
+        margin-bottom: 10px;
+        span {
+          font-size: 13px;
+        }
+      }
+    }
+    p{
+      font-size: 15px;
+      margin-bottom: 7px;
+      span{
+        font-size: 14px;
+      }
+    }
+  }
+}

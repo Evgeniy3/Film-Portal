@@ -1,0 +1,116 @@
+@import '../variables';
+
+.header {
+  border-bottom: 1px solid $gray-line;
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 950px) {
+      display: block;
+    }
+  }
+
+  &__registration {
+    display: flex;
+    @media (max-width: 950px) {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 600px) {
+      display: block;
+      text-align: center;
+      a {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  &__logo {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: center;
+
+    img {
+      margin-right: 15px;
+    }
+
+    h1 {
+      font-size: 24px;
+      letter-spacing: 1%;
+      text-transform: uppercase;
+      font-weight: 800;
+      @media (max-width: 960px) {
+        font-size: 20px;
+      }
+    }
+
+    p {
+      font-size: 16px;
+      @media (max-width: 960px) {
+        font-size: 12px;
+      }
+    }
+  }
+  &__avatar{
+    position: relative;
+    display: block;
+    cursor: pointer;
+
+    @media (max-width: 600px) {
+      img {
+        margin: 0;
+      }
+    }
+    &:hover{
+      .header__hideblock{
+        display: block;
+      }
+    }
+    p {
+      font-size: 16px;
+    }
+    &-img{
+      margin-left: 30%;
+      width: 18px;
+    }
+  }
+  &__hideblock {
+    display: none;
+    position: absolute;
+    top: 48px;
+    right: -60px;
+    width: 160px;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #e7e7e7;
+    border-radius: 10%;
+    @media (max-width: 600px) {
+      top: 41px;
+      right: 51px;
+    }
+    &:hover {
+      display: block;
+    }
+    p{
+      padding: 10px 5px;
+      color: #000;
+      cursor: pointer;
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+  &__theme-btn {
+    margin-right: 20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &__theme-svg{
+    fill: var(#{--svg-background-default});
+  }
+}
