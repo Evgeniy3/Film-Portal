@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSearchOneFilmQuery } from "../store/filmSlice/film.api";
 import Loader from "../components/Loader";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { addFavFilm, removeFavFilm } from "../store/favFilmSlice/favFilmSlice";
+import { IFullFilm } from "../store/filmSlice/types";
+import { RootState, useAppDispatch } from "../store";
 
-const FullFilm = () => {
-  const dispatch = useDispatch();
+const FullFilm: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
   const { id } = useParams();
   const { data, isError } = useSearchOneFilmQuery(id);
-  const { favFilms } = useSelector((state) => state.favFilm);
+  const { favFilms } = useSelector((state: RootState) => state.favFilm);
   const [isFav, setIsFav] = useState(
-    favFilms.some((obj) => obj?.imdbID === data?.imdbID)
+    favFilms.some((obj: IFullFilm) => obj?.imdbID === data?.imdbID)
   );
-
-  const isAuth = JSON.parse(localStorage.getItem('admin'))
+  console.log()
+  const isAuth = JSON.parse(localStorage.getItem('admin')!)
 
   const addFilmBtn = () => {
       dispatch(addFavFilm(data));
@@ -26,7 +28,7 @@ const FullFilm = () => {
     setIsFav(false);
   };
 
-  const backBtn = () => {
+  const backRegisterBtn = () => {
     navigate('/registration')
   };
 
@@ -45,7 +47,7 @@ const FullFilm = () => {
         </div>
       )}
       <div className="container fullfilm">
-        <img className="fullfilm-img" src={data.Poster} alt="Poster" />
+        {data.Poster !== "N/A" ? <img className="fullfilm-img" src={data.Poster} alt="Poster" /> : <div className="fullfilm-img__imgempty"><p>Постера нет <br/> 😕</p></div>}
         <div>
           <p>
             Название: <span>{data.Title}</span>
@@ -101,7 +103,7 @@ const FullFilm = () => {
           <div className="fullfilm-btns">
             {!isFav && (
               <button
-                onClick={isAuth ? addFilmBtn : backBtn}
+                onClick={isAuth ? addFilmBtn : backRegisterBtn}
                 className="button button--registration"
               >
                 <span>Добавить в избранное</span>
@@ -110,7 +112,7 @@ const FullFilm = () => {
 
             {isFav && (
               <button
-                onClick={isAuth ? removeFilmBtn : backBtn}
+                onClick={isAuth ? removeFilmBtn : backRegisterBtn}
                 className="button button--registration"
               >
                 <span>Удалить из избранного</span>

@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSortType } from "../store/filterFilmSlice/filterFilmSlice";
+import { SortType as SortList } from "../store/filterFilmSlice/types";
 
-export const sortList = [
+export const sortList: SortList[] = [
   { name: "Все", value: "" },
   { name: "Фильм", value: "movie" },
   { name: "Сериал", value: "series" },
   { name: "Эпизод", value: "episode" },
 ];
 
-const SortType = ({ value }) => {
+const SortType: React.FC<{value: SortList}> = ({ value }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
-  const onClickSort = (obj) => {
+  const onClickSort = (obj: SortList) => {
     dispatch(setSortType(obj));
     setOpen(false);
   };

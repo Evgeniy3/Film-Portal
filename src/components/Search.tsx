@@ -1,13 +1,13 @@
-import React, { useRef, useState, useCallback } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import {useDebounce} from '../hooks/debounce';
-import { useDispatch } from "react-redux";
 import { setSearch } from "../store/filterFilmSlice/filterFilmSlice";
+import { useAppDispatch } from "../store";
 
-const Search = () => {
-  const [value, setValue] = useState('deadpool')
-  const inputRef = useRef(null);
+const Search: React.FC = () => {
+  const [value, setValue] = useState<string>('deadpool')
+  const inputRef = useRef<HTMLInputElement>(null);
   const debounced = useDebounce(value);
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   if(value === '123') {
     throw new Error('BOOOOOOOOM!')
@@ -18,12 +18,12 @@ const Search = () => {
     setValue('');
     inputRef.current?.focus();
   };
+  
+  useEffect(() => {
+    dispatch(setSearch(debounced))
+  }, [debounced])
 
-   useCallback(
-      dispatch(setSearch(debounced))
-  , []);
-
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 

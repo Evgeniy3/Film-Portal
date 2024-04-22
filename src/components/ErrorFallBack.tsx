@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ErrorFallBack = ({error, resetErrorBoundary}) => {
+const ErrorFallBack: React.FC<any> = ({error, resetErrorBoundary}) => {
   return (
     <div className="content__error-info">
           <h2>Произошла ошибка 😕</h2>

@@ -1,14 +1,17 @@
-import { useState } from 'react';
-import { ThemeContext } from '../context/ThemeContext';
+import { ReactNode, useState } from 'react';
+import { Theme, ThemeContext } from '../context/ThemeContext';
 import { changeCssRootVar } from '../model/changeCssRootVar';
 import { storage } from '../model/storage';
 
-export const ThemeProvider = ({ children, ...props }) => {
-  const [theme, setTheme] = useState(storage.getItem('theme'));
+interface Props {
+    children: ReactNode
+}
+
+export const ThemeProvider = ({ children, ...props }: Props) => {
+  const [theme, setTheme] = useState<Theme>(storage.getItem('theme'));
 
   changeCssRootVar(theme);
-  
-  const changeTheme = (theme) => {
+  const changeTheme = (theme: Theme) => {
     storage.setItem('theme', theme);
     setTheme(theme);
     changeCssRootVar(theme);

@@ -4,7 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const RegistrationPage = () => {
+export interface IUser {
+  name: string,
+  password: string,
+}
+
+const RegistrationPage: React.FC = () => {
   const navigate = useNavigate();
 
   const RegisterSchema = yup
@@ -15,7 +20,7 @@ const RegistrationPage = () => {
         .string()
         .required("Укажите пароль")
         .min(5, "Минимум 5 символов!"),
-      confirmPassword: yup.string().oneOf([yup.ref('password'), null], ('Пароли должны совпадать')),  
+      confirmPassword: yup.string().oneOf([yup.ref('password'), null!], ('Пароли должны совпадать')),  
     })
     .required();
 
@@ -28,14 +33,13 @@ const RegistrationPage = () => {
     mode: "all",
   });
 
-  const onSubmit = ({ name, password }) => {
-    const isAuth = JSON.parse(window.localStorage.getItem('admin'))
-    if(isAuth?.name === name) {
-      alert('Вы уже зарегистрированы!')
+  const onSubmit = ({ name, password }: IUser) => {
+    const isAuth = JSON.parse(window.localStorage.getItem(`${process.env.REACT_APP_LS_KEY}`)!)
+    if(isAuth?.password !== password) {
+      window.localStorage.setItem(`${process.env.REACT_APP_LS_KEY}`, JSON.stringify({name, password}))
+      navigate('/')
     }
-    window.localStorage.setItem(password, JSON.stringify({name, password}))
-    navigate('/')
-    
+    alert('Пользователь с таким паролем уже существует!')
   };
 
   return (

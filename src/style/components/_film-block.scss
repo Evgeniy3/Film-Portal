@@ -19,6 +19,14 @@
     height: 370px;
   }
 
+  &__imgempty {
+    width: 260px;
+    height: 370px;
+    p {
+      padding-top: 44%;
+    }
+  }
+
   &__title {
     font-size: 20px;
     font-weight: 900;
@@ -42,6 +50,11 @@
   &-img {
     width: 500px;
     margin-right: 20px;
+  }
+  &-img__imgempty {
+    width: 40%;
+    margin: auto 0;
+    text-align: center;
   }
   &-btns {
     display: flex;

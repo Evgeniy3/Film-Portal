@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { IFilm, IFullFilm, IPops, ServerResponse } from './types';
 
 export const filmApi = createApi({
     reducerPath: 'film/api',
@@ -7,18 +8,18 @@ export const filmApi = createApi({
     }),
     refetchOnFocus: true,
     endpoints: build => ({
-      searchFilms: build.query({
+      searchFilms: build.query<ServerResponse<IFilm>, IPops>({
         query: (args) => {
           const { searchValue, pageValue, sortType, sortYear} = args;
           
           return {
-            url: `?apikey=7fd6cd39&s=${searchValue}&page=${pageValue}&type=${sortType.value}&y=${sortYear.value}`,
+            url: `?apikey=${process.env.REACT_APP_API_KEY}&s=${searchValue}&page=${pageValue}&type=${sortType.value}&y=${sortYear.value}`,
           }
         },
       }),
-      searchOneFilm: build.query({
+      searchOneFilm: build.query<IFullFilm, string | undefined>({
         query: (search) => ({
-          url: `?apikey=7fd6cd39`,
+          url: `?apikey=${process.env.REACT_APP_API_KEY}`,
           params: {
             i: search,
           }

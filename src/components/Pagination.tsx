@@ -1,12 +1,12 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
-import { setCurrentPage } from '../store/favFilmSlice/favFilmSlice';
+import { setCurrentPage } from '../store/filterFilmSlice/filterFilmSlice';
 
-const PaginationFav = ({totalCount}) => {
-    const [page, setPage] = React.useState(1)
+const Pagination: React.FC<{totalResult: string}> = ({totalResult}) => {
+    const [page, setPage] = React.useState<number>(1)
     const dispatch = useDispatch()
 
-    let allPage = Math.ceil(totalCount / 10) 
+    let allPage = Math.ceil(+totalResult / 10) 
 
     React.useEffect(() => {
         dispatch(setCurrentPage(page))
@@ -43,4 +43,4 @@ const PaginationFav = ({totalCount}) => {
   )
 }
 
-export default PaginationFav;
+export default Pagination

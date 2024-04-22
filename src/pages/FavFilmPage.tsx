@@ -2,9 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import FilmBlock from "../components/FilmBlock";
 import PaginationFav from "../components/PaginationFav";
+import { RootState } from "../store";
+import { IFullFilm } from "../store/filmSlice/types";
 
-const FavFilmPage = () => {
-  const { favFilms, pageValue} = useSelector((state) => state.favFilm);
+const FavFilmPage: React.FC = () => {
+  const { favFilms, pageValue} = useSelector((state: RootState) => state.favFilm);
   
   const lastIndex = pageValue * 10
   const firstIndex = lastIndex - 10
@@ -17,7 +19,7 @@ const FavFilmPage = () => {
         className={favFilms.length > 0 ? "content__items" : "content__epmty"}
       >
         {favFilms.length > 0 ? (
-          currentFilms.map((obj) => <FilmBlock key={obj.imdbID} {...obj} />)
+          currentFilms.map((obj: IFullFilm) => <FilmBlock key={obj.imdbID} {...obj} />)
         ) : (
           <p>У вас нет избранных фильмов!</p>
         )}

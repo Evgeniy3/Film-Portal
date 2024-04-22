@@ -4,6 +4,7 @@ import { filmApi } from './filmSlice/film.api'
 import filterReducer from './filterFilmSlice/filterFilmSlice'
 import favFilmSlice from './favFilmSlice/favFilmSlice'
 import logger from '../middleware'
+import { useDispatch } from 'react-redux'
 
 export const store = configureStore({
     reducer: {
@@ -15,3 +16,7 @@ export const store = configureStore({
 })
 
 setupListeners(store.dispatch)
+
+export type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();

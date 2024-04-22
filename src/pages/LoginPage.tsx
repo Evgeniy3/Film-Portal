@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { IUser } from "./RegistrationPage";
 
-const LoginPage = () => {
+const LoginPage: React.FC = () => {
   const navigate = useNavigate();
-
-
+  
   const RegisterSchema = yup
     .object()
     .shape({
@@ -28,8 +28,8 @@ const LoginPage = () => {
     mode: "all",
   });
 
-  const onSubmit = ({ name, password }) => {
-      const isAuth = JSON.parse(window.localStorage.getItem('admin'))
+  const onSubmit = ({ name, password }: IUser) => {
+      const isAuth = JSON.parse(window.localStorage.getItem(`${process.env.REACT_APP_LS_KEY}`)!)
       if(!isAuth) {
         alert('Вы не зарегистрированы!')
       }

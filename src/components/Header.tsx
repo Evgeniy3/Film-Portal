@@ -4,18 +4,18 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Search from "./Search";
 import AvatarSvg from "../assets/img/avatar.svg";
 import { useTheme } from "../hooks/theme";
+import { Theme } from "../context/ThemeContext";
 
-const Header = () => {
+const Header: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate()
   const theme = useTheme();
 
-  
-  const isAuth = JSON.parse(window.localStorage.getItem('admin'))
+  const isAuth = JSON.parse(window.localStorage.getItem(`${process.env.REACT_APP_LS_KEY}`)!)
 
   const removeAccount = () => {
     if (window.confirm('Ты действительно хочешь удалить аккаунт?')) {
-      localStorage.removeItem();
+      window.localStorage.removeItem(`${process.env.REACT_APP_LS_KEY}`);
       window.location.reload();
     }
   };
@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   const changeTheme = () => {
-    theme.changeTheme(theme.theme === "light" ? "dark" : "light");
+    theme.changeTheme(theme.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
 
   return (
@@ -41,7 +41,7 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        {location.pathname !== "/favourite" && <Search />}
+        {location.pathname === "/" && <Search />}
         <div className="header__registration">
           <button
             title="Сменить тему?"

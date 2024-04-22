@@ -6,10 +6,11 @@ import Loader from "../components/Loader";
 import Pagination from "../components/Pagination";
 import SortType from "../components/SortType";
 import SortYear from "../components/SortYear";
+import { RootState } from "../store";
 
-const Home = () => {
+const Home: React.FC = () => {
   const { searchValue, pageValue, sortType, sortYear } = useSelector(
-    (state) => state.filter
+    (state: RootState) => state.filter
   );
   const { isError, data } = useSearchFilmsQuery({
     searchValue,
@@ -17,7 +18,6 @@ const Home = () => {
     sortType,
     sortYear,
   });
-
   if (!data) {
     return <Loader />;
   }

@@ -1,6 +1,8 @@
-import { createSlice} from '@reduxjs/toolkit';
+import { PayloadAction, createSlice} from '@reduxjs/toolkit';
+import { FavFilmsSliceState } from './types';
+import { IFullFilm } from '../filmSlice/types';
 
-const initialState = {
+const initialState: FavFilmsSliceState = {
     favFilms: JSON.parse(localStorage.getItem('favfilms') ?? '[]'),
     pageValue: 1,
     
@@ -10,12 +12,12 @@ const favFilmSlice = createSlice({
   name: 'favFilm',
   initialState,
   reducers: {
-    addFavFilm: (state, action) => {
-        state.favFilms.push(action.payload)
+    addFavFilm: (state, action: PayloadAction<IFullFilm | undefined>) => {
+        state.favFilms.push(action.payload!)
         localStorage.setItem('favfilms', JSON.stringify(state.favFilms))
     },
-    removeFavFilm: (state, action) => {
-        state.favFilms = state.favFilms.filter((obj) => obj.imdbID !== action.payload)
+    removeFavFilm: (state, action: PayloadAction<unknown>) => {
+        state.favFilms = state.favFilms.filter((obj: IFullFilm) => obj.imdbID !== action.payload)
         localStorage.setItem('favfilms', JSON.stringify(state.favFilms))
     },
     setCurrentPage: (state, action) => {

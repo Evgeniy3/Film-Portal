@@ -88,6 +88,10 @@
     background-color: white;
     border: 1px solid #e7e7e7;
     border-radius: 10%;
+    @media (max-width: 600px) {
+      top: 41px;
+      right: 51px;
+    }
     &:hover {
       display: block;
     }

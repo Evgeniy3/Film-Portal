@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSortYear } from "../store/filterFilmSlice/filterFilmSlice";
+import { SortType } from "../store/filterFilmSlice/types";
 
 const year = (new Date()).getFullYear();
-const allYears = [{name: 'Выбрать', value: ''}]
+const allYears: SortType[] = [{name: 'Выбрать', value: ''}]
 for(let i = year; i >= 1950; i--) {
-  allYears.push({name: i, value: i}) 
+  allYears.push({name: i + '', value: i + ''}) 
 }
 
-const SortYear = ({value}) => {
+const SortYear: React.FC<{value: SortType}> = ({value}) => {
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
 
-    const onClickSort = (obj) => {
+    const onClickSort = (obj: SortType) => {
       dispatch(setSortYear(obj));
       setOpen(false);
     };
