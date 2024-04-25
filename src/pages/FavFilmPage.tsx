@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import FilmBlock from "../components/FilmBlock";
 import PaginationFav from "../components/PaginationFav";
-import { RootState } from "../store";
 import { IFullFilm } from "../store/filmSlice/types";
+import { favFilmsSelect } from "../store/favFilmSlice/favFilmSlice";
 
 const FavFilmPage: React.FC = () => {
-  const { favFilms, pageValue} = useSelector((state: RootState) => state.favFilm);
+  const { favFilms, pageValue} = useSelector(favFilmsSelect);
   
   const lastIndex = pageValue * 10
   const firstIndex = lastIndex - 10

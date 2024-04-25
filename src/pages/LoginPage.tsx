@@ -30,14 +30,18 @@ const LoginPage: React.FC = () => {
 
   const onSubmit = ({ name, password }: IUser) => {
       const isAuth = JSON.parse(window.localStorage.getItem(`${process.env.REACT_APP_LS_KEY}`)!)
-      if(!isAuth) {
-        alert('Вы не зарегистрированы!')
+      try{
+        if(!isAuth) {
+          alert('Вы не зарегистрированы!')
+        }
+        else if(isAuth.name === name && isAuth.password === password) {
+          navigate('/')
+        } else {
+          alert('Неверный логин или пароль!')
+        } 
+      } catch (error) {
+        console.log(error)
       }
-      else if(isAuth.name === name && isAuth.password === password) {
-        navigate('/')
-      } else {
-        alert('Неверный логин или пароль!')
-      } 
   };
 
   return (
