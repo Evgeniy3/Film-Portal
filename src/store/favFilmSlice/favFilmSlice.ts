@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice} from '@reduxjs/toolkit';
 import { FavFilmsSliceState } from './types';
 import { IFullFilm } from '../filmSlice/types';
+import { RootState } from '..';
 
 const initialState: FavFilmsSliceState = {
     favFilms: JSON.parse(localStorage.getItem('favfilms') ?? '[]'),
@@ -25,6 +26,8 @@ const favFilmSlice = createSlice({
     },
   },
 });
+
+export  const favFilmsSelect = (state: RootState) => state.favFilm;
 
 export const { addFavFilm, removeFavFilm, setCurrentPage } = favFilmSlice.actions;
 

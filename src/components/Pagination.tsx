@@ -10,7 +10,7 @@ const Pagination: React.FC<{totalResult: string}> = ({totalResult}) => {
 
     React.useEffect(() => {
         dispatch(setCurrentPage(page))
-    }, [page])
+    }, [dispatch, page])
 
     const nextPage = () => {
         if(page < allPage) {

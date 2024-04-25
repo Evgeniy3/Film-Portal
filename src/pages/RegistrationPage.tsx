@@ -35,11 +35,16 @@ const RegistrationPage: React.FC = () => {
 
   const onSubmit = ({ name, password }: IUser) => {
     const isAuth = JSON.parse(window.localStorage.getItem(`${process.env.REACT_APP_LS_KEY}`)!)
-    if(isAuth?.password !== password) {
-      window.localStorage.setItem(`${process.env.REACT_APP_LS_KEY}`, JSON.stringify({name, password}))
-      navigate('/')
+    try {
+      if(isAuth?.password !== password) {
+        window.localStorage.setItem(`${process.env.REACT_APP_LS_KEY}`, JSON.stringify({name, password}))
+        navigate('/')
+      } else {
+        alert('Пользователь с таким паролем уже существует!')
+      }
+    } catch (error){
+      console.log(error)
     }
-    alert('Пользователь с таким паролем уже существует!')
   };
 
   return (

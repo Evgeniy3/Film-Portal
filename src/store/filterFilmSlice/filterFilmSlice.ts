@@ -1,8 +1,9 @@
 import { PayloadAction, createSlice} from '@reduxjs/toolkit'
 import { IFilterSliceState, SortType } from './types';
+import { RootState } from '..';
 
 const initialState: IFilterSliceState = {
-  searchValue: '',
+  searchValue: JSON.parse(localStorage.getItem('search') ?? 'deadpool'),
   pageValue: 1,
   sortType: { name: "Все", value: ""},
   sortYear: {name: 'Выбрать', value: ''},
@@ -14,6 +15,7 @@ const filterSlice = createSlice({
   reducers: {
     setSearch: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
+      localStorage.setItem('search', JSON.stringify(state.searchValue))
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.pageValue = action.payload;
@@ -26,6 +28,8 @@ const filterSlice = createSlice({
     },
   },
 });
+
+export const filterSelect = (state: RootState) => state.filter;
 
 export const { setSearch, setCurrentPage, setSortType, setSortYear} = filterSlice.actions;
 

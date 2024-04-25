@@ -1,10 +1,10 @@
-import React, { useRef, useState, useCallback, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import {useDebounce} from '../hooks/debounce';
 import { setSearch } from "../store/filterFilmSlice/filterFilmSlice";
 import { useAppDispatch } from "../store";
 
 const Search: React.FC = () => {
-  const [value, setValue] = useState<string>('deadpool')
+  const [value, setValue] = useState<string>(JSON.parse(localStorage.getItem('search') ?? 'deadpool'))
   const inputRef = useRef<HTMLInputElement>(null);
   const debounced = useDebounce(value);
   const dispatch = useAppDispatch()
@@ -21,7 +21,7 @@ const Search: React.FC = () => {
   
   useEffect(() => {
     dispatch(setSearch(debounced))
-  }, [debounced])
+  }, [debounced, dispatch])
 
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);

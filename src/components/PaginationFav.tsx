@@ -5,12 +5,11 @@ import { setCurrentPage } from '../store/favFilmSlice/favFilmSlice';
 const PaginationFav: React.FC<{totalCount: number}> = ({totalCount}) => {
     const [page, setPage] = React.useState<number>(1)
     const dispatch = useDispatch()
-    console.log('sadasdasdasdasdasd',totalCount)
     let allPage = Math.ceil(totalCount / 10) 
 
     React.useEffect(() => {
         dispatch(setCurrentPage(page))
-    }, [page])
+    }, [dispatch, page])
 
     const nextPage = () => {
         if(page < allPage) {
