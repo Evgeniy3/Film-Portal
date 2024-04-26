@@ -4,7 +4,7 @@ import { setSearch } from "../store/filterFilmSlice/filterFilmSlice";
 import { useAppDispatch } from "../store";
 
 const Search: React.FC = () => {
-  const [value, setValue] = useState<string>(JSON.parse(localStorage.getItem('search') ?? 'deadpool'))
+  const [value, setValue] = useState<string>(JSON.parse(localStorage.getItem('search')!) ?? 'deadpool')
   const inputRef = useRef<HTMLInputElement>(null);
   const debounced = useDebounce(value);
   const dispatch = useAppDispatch()

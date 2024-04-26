@@ -12,7 +12,7 @@ export const store = configureStore({
         filter: filterReducer,
         favFilm: favFilmSlice,
     },
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([filmApi.middleware, logger])
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat([filmApi.middleware])
 })
 
 setupListeners(store.dispatch)
