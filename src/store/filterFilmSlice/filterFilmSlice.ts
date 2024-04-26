@@ -3,7 +3,7 @@ import { IFilterSliceState, SortType } from './types';
 import { RootState } from '..';
 
 const initialState: IFilterSliceState = {
-  searchValue: JSON.parse(localStorage.getItem('search') ?? 'deadpool'),
+  searchValue: JSON.parse(localStorage.getItem('search')!) ?? 'deadpool',
   pageValue: 1,
   sortType: { name: "Все", value: ""},
   sortYear: {name: 'Выбрать', value: ''},
